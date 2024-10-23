@@ -10,6 +10,7 @@
   contador DB 0H
   fila DB 0H
   columna DB 0H
+  cantidadTurnos DB 0H
   
 .CODE                                      
                                            
@@ -18,15 +19,68 @@ Begin:
     mov ds, ax                                           
     cld                                
     mov ax,0B800H                  
-    mov es,ax  
+    mov es,ax
+    
+    call turno1
+    call entrada
+    call actualizarContador
+    call turno2
     call entrada
     call actualizarContador
     
+    turno1 PROC
+    mov cx, 17
+    mov si, offset turno
+    mov di, 1300
+    call imprimirString
+    
+    mov bl, 1
+    call imprimirChar
+    ret
+    turno1 ENDP
+    
+    turno2 PROC
+    mov cx, 17
+    mov si, offset turno
+    mov di, 1300
+    call imprimirString
+    
+    mov bl, 2
+    call imprimirChar
+    ret
+    turno2 ENDP
+    
+    manejoTurnos PROC
+    mov cx, 17
+    mov si, offset turno
+    mov di, 1300
+    call imprimirString
+    
+    mov al, cantidadTurnos
+    mov bl, 2H
+    div bl
+    cmp ah, 0; compara el residuo con 0 (si es par o no)
+    je turno1
+    mov bl, 2
+    call imprimirChar
+    jmp terminar
+    
+turnoUno: 
+    mov bl, 1
+    call imprimirChar
+    jmp terminar
+    
+terminar:
+    inc cantidadTurnos
+    ret
+    manejoTurnos ENDP
+    
     entrada PROC
-    mov cx, 30; la hilera es de 32 chars          
+    mov cx, 30; la hilera es de 30 chars          
     mov si, offset peticion
     mov di, 1620; posicion de la hilera en pantalla        
     call imprimirString
+    
     
     mov cx, 2
     mov si, 0
@@ -78,6 +132,15 @@ salir:
     
     ret
     actualizarContador ENDP
+    
+    clearScreen PROC     NEAR                              
+    mov ax, 0600h                             
+    mov bh, 07h                               
+    mov cx, 0000h                             
+    mov dx, 184Fh                             
+    int 10h                                   
+    RET                                       
+    clearScreen ENDP
     
    
    getch PROC    NEAR                        
