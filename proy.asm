@@ -11,6 +11,9 @@
   fila DB 0H
   columna DB 0H
   cantidadTurnos DB 0H
+  unidades DB 0H
+  decenas DB 0H
+  centenas DB 0H
   
 .CODE                                      
                                            
@@ -20,14 +23,18 @@ Begin:
     cld                                
     mov ax,0B800H                  
     mov es,ax
-    
+    jugar: ;logica para controlar el flujo del juego
     call turno1
     call entrada
     call actualizarContador
+    cmp contador, 100
+    jg salir
     call turno2
     call entrada
     call actualizarContador
-    
+    cmp contador, 100
+    jg salir
+    jmp jugar
     turno1 PROC
     mov cx, 17
     mov si, offset turno
@@ -128,7 +135,7 @@ salir:
     call imprimirString
     
     mov bl, contador
-    call imprimirChar
+    call imprimirNumeros
     
     ret
     actualizarContador ENDP
@@ -162,6 +169,23 @@ salir:
          
      RET
    leer ENDP
+   
+   imprimirNumeros PROC
+   mov al, contador
+   aam             ;Se divide el valor del contador en ah(centenas y decenas) al(unidades)
+   mov unidades, al ; Se guardan las unidades
+   mov al, ah
+   aam              ; Se vuelven a dividir las centenas y decenas igual que en el paso anterior
+   mov decenas, al
+   mov centenas, ah
+   mov bl, centenas ; a partir de aca solamente se imprimen
+   call imprimirChar
+   mov bl, decenas
+   call imprimirChar
+   mov bl, unidades
+   call imprimirChar
+   ret
+   imprimirNumeros ENDP
    
    imprimirChar PROC
    add bl, 30H; cambia de bin a ascii
