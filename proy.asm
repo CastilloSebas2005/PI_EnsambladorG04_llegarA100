@@ -29,8 +29,8 @@ Begin:
     mov es,ax
     
     ;TO-DO interaccion preguntar modo
-    call vsJugador
-    ;call vsCompu
+    ;call vsJugador
+    call vsComputadora
     .EXIT
     
     vsJugador PROC
@@ -68,9 +68,10 @@ salirJ:
     jg salirJuegoC
     
     call turnoMaquina
+    call imprimirContinuar
     call tiradaMaquina
-    ;call entrada
-    ;call actualizarContador
+    call imprimirContinuar
+    call getch
     call clearScreen
     cmp contador, 100
     jg salirJuegoC
@@ -252,6 +253,7 @@ finTurnoCompu:
     
     call imprimirChar
     call imprimirContador
+    ret
     tiradaMaquina ENDP
     
     entrada PROC
@@ -293,7 +295,7 @@ leerEntrada:
     loop leerEntrada
     
 salir:
-    call clearCursor
+    ;call clearCursor
     ret
     entrada ENDP
     
@@ -324,6 +326,15 @@ salir:
         int 10h                                   
         RET
     clearScreen ENDP
+    
+    clearPeticion PROC
+    mov ax, 0600h                             
+        mov bh, 07h                               
+        mov cx, 1620h                             
+        mov dx, 0A2Dh                             
+        int 10h                                   
+        RET
+    clearPeticion ENDP
     
    
    getch PROC    NEAR                        
