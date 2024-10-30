@@ -39,12 +39,12 @@ Begin:
     call entrada
     call actualizarContador
     cmp contador, 100
-    jg salirJ
+    jge salirJ
     call turno2
     call entrada
     call actualizarContador
     cmp contador, 100
-    jg salirJ
+    jge salirJ
     jmp jugar
     
 salirJ:
@@ -65,7 +65,7 @@ salirJ:
     call getch; TO-DO INGRESE ENTER
     call clearScreen
     cmp contador, 100
-    jg salirJuegoC
+    jge salirJuegoC
     
     call turnoMaquina
     call imprimirContinuar
@@ -74,7 +74,7 @@ salirJ:
     call getch
     call clearScreen
     cmp contador, 100
-    jg salirJuegoC
+    jge salirJuegoC
     jmp jugarC
 
 salirJuegoC:
