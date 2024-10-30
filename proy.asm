@@ -37,10 +37,9 @@ Begin:
     call imprimirString
     
     call getch
+    cmp al, 31H; 1 en ascii
     call clearScreen
-    cmp al, 1; 1 en ascii
-    ja computadora
-    jmp jugador
+    je jugador
     
 computadora: 
     call vsComputadora
