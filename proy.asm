@@ -28,9 +28,26 @@ Begin:
     mov ax,0B800H                  
     mov es,ax
     
-    ;TO-DO interaccion preguntar modo
-    ;call vsJugador
+    mov fila, 8
+    mov columna, 50
+    call ponerCursor
+    mov cx, 40; longitud de hilera        
+    mov si, offset modalidad
+    mov di, 1300; posicion de la hilera en pantalla
+    call imprimirString
+    
+    call getch
+    call clearScreen
+    cmp al, 1; 1 en ascii
+    ja computadora
+    jmp jugador
+    
+computadora: 
     call vsComputadora
+    .EXIT
+    
+jugador:
+    call vsJugador
     .EXIT
     
     vsJugador PROC
@@ -62,7 +79,7 @@ salirJ:
     call entrada
     call actualizarContador
     call imprimirContinuar
-    call getch; TO-DO INGRESE ENTER
+    call getch
     call clearScreen
     cmp contador, 100
     jge salirJuegoC
@@ -295,7 +312,7 @@ leerEntrada:
     loop leerEntrada
     
 salir:
-    ;call clearCursor
+    call clearCursor
     ret
     entrada ENDP
     
