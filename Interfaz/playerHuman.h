@@ -5,11 +5,10 @@
 
 #include "playerModel.h"
 
-class playerHuman: public playerModel {
+class playerHuman : public playerModel {
 
- public:
-    playerHuman(char ID);
-
+public:
+  playerHuman(char ID);
 };
 
-#endif  // PLAYERHUMAN_H
+#endif // PLAYERHUMAN_H

@@ -13,17 +13,16 @@
 extern "C" uint8_t analizeCounter(uint8_t counter);
 
 /// @brief Clase que va a manejar el jugador Computadora
-class playerComputer: public playerModel
-{
+class playerComputer : public playerModel {
 public:
-    /// @brief Constructor
-    /// @param ID Identificador del jugador
-    playerComputer(char ID);
+  /// @brief Constructor
+  /// @param ID Identificador del jugador
+  playerComputer(char ID);
 
-    /// @brief Funcion que va a generar el numero que se le va a sumar al contador
-    /// @param counter Estado actual del contador
-    /// @return Numero generado por la funcion en ensamblador que lo analiza
-    uint8_t generateNumber(uint8_t counter);
+  /// @brief Funcion que va a generar el numero que se le va a sumar al contador
+  /// @param counter Estado actual del contador
+  /// @return Numero generado por la funcion en ensamblador que lo analiza
+  uint8_t generateNumber(uint8_t counter);
 };
 
-#endif  // PLAYERCOMPUTER_H
+#endif // PLAYERCOMPUTER_H

@@ -3,4 +3,4 @@
 #include "playerHuman.h"
 #include "playerModel.h"
 
-playerHuman::playerHuman(char ID): playerModel(ID) {}
+playerHuman::playerHuman(char ID) : playerModel(ID) {}
