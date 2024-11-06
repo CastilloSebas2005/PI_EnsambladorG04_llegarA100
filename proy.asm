@@ -3,10 +3,14 @@
 .586                                 
                                            
 .DATA
+  modalidad DB "[1] Jugador-jugador. [2]Jugador-maquina: "; 40 chars
   peticion DB "Ingrese un numero del 1 al 10: "; 30 chars
   respuesta DB "Contador: "; 10 chars
   turno DB "Turno de jugador "; 17 chars
-  entradaTemporal DB ?
+  turnoCompu DB "Turno de la maquina"; 19 chars
+  entradaCompu DB "Numero ingresado por la maquina: "; 33 chars
+  ingresarEnter DB "Ingrese cualquier tecla para continuar"; 38 chars
+  entradaTemporal DB 0H
   contador DB 0H
   fila DB 0H
   columna DB 0H
@@ -23,18 +27,87 @@ Begin:
     cld                                
     mov ax,0B800H                  
     mov es,ax
+    
+    mov fila, 8
+    mov columna, 50
+    call ponerCursor
+    mov cx, 40; longitud de hilera        
+    mov si, offset modalidad
+    mov di, 1300; posicion de la hilera en pantalla
+    call imprimirString
+    
+    call getch
+    cmp al, 31H; 1 en ascii
+    call clearScreen
+    je jugador
+    
+computadora: 
+    call vsComputadora
+    .EXIT
+    
+jugador:
+    call vsJugador
+    .EXIT
+    
+    vsJugador PROC
     jugar: ;logica para controlar el flujo del juego
     call turno1
     call entrada
     call actualizarContador
     cmp contador, 100
-    jg salir
+    jge salirJ
     call turno2
     call entrada
     call actualizarContador
     cmp contador, 100
-    jg salir
+    jge salirJ
     jmp jugar
+    
+salirJ:
+    ret
+    vsJugador ENDP
+    
+    
+    vsComputadora PROC
+    
+    jugarC: ;logica para controlar el flujo del juego
+    
+    call imprimirContador
+    
+    call turno1
+    call entrada
+    call actualizarContador
+    call imprimirContinuar
+    call getch
+    call clearScreen
+    cmp contador, 100
+    jge salirJuegoC
+    
+    call turnoMaquina
+    call imprimirContinuar
+    call tiradaMaquina
+    call imprimirContinuar
+    call getch
+    call clearScreen
+    cmp contador, 100
+    jge salirJuegoC
+    jmp jugarC
+
+salirJuegoC:
+    ret
+    vsComputadora ENDP
+    
+    imprimirContador PROC
+    mov cx, 10; longitud de hilera        
+    mov si, offset respuesta
+    mov di, 1380; posicion de la hilera en pantalla
+    call imprimirString
+    
+    mov bl, contador
+    call imprimirNumeros
+    ret
+    imprimirContador ENDP
+    
     turno1 PROC
     mov cx, 17
     mov si, offset turno
@@ -82,6 +155,123 @@ terminar:
     ret
     manejoTurnos ENDP
     
+    turnoMaquina PROC
+    mov cx, 19
+    mov si, offset turnoCompu
+    mov di, 1300
+    call imprimirString
+    
+    mov al, contador
+    cmp al, 1
+    je tirarRandom
+    jl tirar1
+    cmp al, 12
+    jl tirar12
+    je tirarRandom
+    cmp al, 23
+    jl tirar23
+    je tirarRandom
+    cmp al, 34
+    jl tirar34
+    je tirarRandom
+    cmp al, 45
+    jl tirar45
+    je tirarRandom
+    cmp al, 56
+    jl tirar56
+    je tirarRandom
+    cmp al, 67
+    jl tirar67
+    je tirarRandom
+    cmp al, 78
+    jl tirar78
+    je tirarRandom
+    cmp al, 89
+    jl tirar89
+    je tirarRandom
+    cmp al, 100
+    jl tirar100
+    ; en buena teoria no deberia de llegar hasta aca
+    jmp finTurnoCompu
+    
+tirar1:
+    mov bl, 1
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar12:
+    mov bl, 12
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar23:
+    mov bl, 23
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar34:
+    mov bl, 34
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar45:
+    mov bl, 45
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar56:
+    mov bl, 56
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar67:
+    mov bl, 67
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar78:
+    mov bl, 78
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar89:
+    mov bl, 89
+    call tirarX
+    jmp finTurnoCompu
+    
+tirar100:
+    mov bl, 100
+    call tirarX
+    jmp finTurnoCompu
+    
+    
+tirarRandom:
+    mov bl, 5; TO-DO
+    jmp finTurnoCompu; instruccion redundante
+    
+finTurnoCompu:
+    ret
+    turnoMaquina ENDP
+    
+    tirarX PROC; X es bl
+    mov al, contador
+    sub bl, al; en bl queda el numero necesario para llegar a X
+    ret
+    tirarX ENDP
+    
+    tiradaMaquina PROC
+    add contador, bl
+    
+    mov cx, 33
+    mov si, offset entradaCompu
+    mov di, 1620
+    call imprimirString
+    
+    call imprimirChar
+    call imprimirContador
+    ret
+    tiradaMaquina ENDP
+    
     entrada PROC
     mov cx, 30; la hilera es de 30 chars          
     mov si, offset peticion
@@ -89,7 +279,7 @@ terminar:
     call imprimirString
     
     
-    mov cx, 2
+    mov cx, 3
     mov si, 0
     mov fila, 10
     mov columna, 43
@@ -121,6 +311,7 @@ leerEntrada:
     loop leerEntrada
     
 salir:
+    call clearCursor
     ret
     entrada ENDP
     
@@ -129,25 +320,37 @@ salir:
     mov bl, entradaTemporal
     add contador, bl
     
-    mov cx, 10; longitud de hilera        
-    mov si, offset respuesta
-    mov di, 1824; posicion de la hilera en pantalla
-    call imprimirString
-    
-    mov bl, contador
-    call imprimirNumeros
+    call imprimirContador
     
     ret
     actualizarContador ENDP
     
-    clearScreen PROC     NEAR                              
+    clearCursor PROC     NEAR                              
     mov ax, 0600h                             
     mov bh, 07h                               
-    mov cx, 0000h                             
-    mov dx, 184Fh                             
+    mov cx, 0A2Bh                             
+    mov dx, 0A2Dh                             
     int 10h                                   
     RET                                       
+    clearCursor ENDP
+    
+    clearScreen PROC NEAR
+    mov ax, 0600h                             
+        mov bh, 07h                               
+        mov cx, 0000h                             
+        mov dx, 184Fh                             
+        int 10h                                   
+        RET
     clearScreen ENDP
+    
+    clearPeticion PROC
+    mov ax, 0600h                             
+        mov bh, 07h                               
+        mov cx, 1620h                             
+        mov dx, 0A2Dh                             
+        int 10h                                   
+        RET
+    clearPeticion ENDP
     
    
    getch PROC    NEAR                        
@@ -156,19 +359,6 @@ salir:
         RET                                                                      
    getch ENDP
    
-   leer PROC
-   mov cx, 25      ;pide 25 chars
-     mov si, 0      ;indice del vector de los mumeros inicializado en 0
-       
-       leerChar:
-         call getch     ;llama a lectura de un (1) caracter, retornado en al
-         add al, -30H; cambia de ascii a bin
-         mov entradaTemporal, al ;guardamos el caracter leido en el vector de entrada
-         INC si         ;nos movemos a la siguiente posicion
-         loop leerChar  ;siguiente iteracion, la CPU ira reduciendo el numero en cx hasta que llegue a 0
-         
-     RET
-   leer ENDP
    
    imprimirNumeros PROC
    mov al, contador
@@ -186,6 +376,14 @@ salir:
    call imprimirChar
    ret
    imprimirNumeros ENDP
+   
+   imprimirContinuar PROC
+   mov cx, 38; la hilera es de 30 chars          
+   mov si, offset ingresarEnter
+   mov di, 1920; posicion de la hilera en pantalla        
+   call imprimirString
+   ret
+   imprimirContinuar ENDP
    
    imprimirChar PROC
    add bl, 30H; cambia de bin a ascii
