@@ -18,7 +18,6 @@ public:
     ~MainWindow();
 
 private:
-    void on_pushButton_clicked();
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

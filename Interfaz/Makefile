@@ -52,11 +52,22 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
-		mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
+SOURCES       = juego.cpp \
+		main.cpp \
+		mainwindow.cpp \
+		playerComputer.cpp \
+		playerHuman.cpp moc_juego.cpp \
+		moc_mainwindow.cpp \
+		analizeCounter.asm
+
+OBJECTS       = juego.o \
+		main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		playerComputer.o \
+		playerHuman.o \
+		moc_juego.o \
+		moc_mainwindow.o \
+		analizeCounter.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -127,6 +138,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -146,8 +158,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		Interfaz.pro mainwindow.h main.cpp \
-		mainwindow.cpp
+		Interfaz.pro juego.h \
+		mainwindow.h \
+		playerModel.h \
+		playerComputer.h \
+		playerModel.h \
+		playerHuman.h juego.cpp \
+		main.cpp \
+		mainwindow.cpp \
+		playerComputer.cpp \
+		playerHuman.cpp
 QMAKE_TARGET  = Interfaz
 DESTDIR       = 
 TARGET        = Interfaz
@@ -156,7 +176,7 @@ TARGET        = Interfaz
 first: all
 ####### Build rules
 
-Interfaz: ui_mainwindow.h $(OBJECTS)  
+Interfaz: ui_juego.h ui_mainwindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: Interfaz.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -229,6 +249,7 @@ Makefile: Interfaz.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.con
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -320,6 +341,7 @@ Makefile: Interfaz.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.con
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -355,9 +377,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents juego.h mainwindow.h playerModel.h playerComputer.h playerModel.h playerHuman.h $(DISTDIR)/
+	$(COPY_FILE) --parents juego.cpp main.cpp mainwindow.cpp playerComputer.cpp playerHuman.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents juego.ui mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -389,9 +411,14 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_juego.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_juego.cpp moc_mainwindow.cpp
+moc_juego.cpp: juego.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/sebas/Ensamblador/Interfaz/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/sebas/Ensamblador/Interfaz -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include juego.h -o moc_juego.cpp
+
 moc_mainwindow.cpp: mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -401,9 +428,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_juego.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_juego.h ui_mainwindow.h
+ui_juego.h: juego.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic juego.ui -o ui_juego.h
+
 ui_mainwindow.h: mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
@@ -418,16 +449,34 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: main.cpp mainwindow.h
+juego.o: juego.cpp juego.h \
+		ui_juego.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o juego.o juego.cpp
+
+main.o: main.cpp mainwindow.h \
+		juego.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
+playerComputer.o: playerComputer.cpp playerComputer.h \
+		playerModel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o playerComputer.o playerComputer.cpp
+
+playerHuman.o: playerHuman.cpp playerHuman.h \
+		playerModel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o playerHuman.o playerHuman.cpp
+
+moc_juego.o: moc_juego.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_juego.o moc_juego.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
+analizeCounter.o: analizeCounter.asm
+	nasm -f elf64 -o analizeCounter.o analizeCounter.asm
 ####### Install
 
 install_target: first FORCE
