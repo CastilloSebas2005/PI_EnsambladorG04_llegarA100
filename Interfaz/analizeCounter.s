@@ -91,7 +91,7 @@ tirarRandom:
     mov al, 0
 ret
 
-tirarX
+tirarX:
     sub bl, al
     mov al, bl
     ret
