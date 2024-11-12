@@ -11,9 +11,22 @@ Juego::Juego(QWidget *parent) : QMainWindow(parent), ui(new Ui::Juego) {
 Juego::~Juego() { delete ui; }
 
 void Juego::updateTextBrowser() {
-  // Convertir counter a QString y actualizar el texto del QTextBrowser
+  // Convertir counter a QString y actualizar el texto del QTextBrowser con formato HTML
   QString text = QString::number(this->counter);
-  ui->counterFrame->setText(text);
+  QString formattedText = QString(
+    "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+    "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" />"
+    "<style type=\"text/css\">"
+    "p, li { white-space: pre-wrap; }"
+    "hr { height: 1px; border-width: 0; }"
+    "li.unchecked::marker { content: \"\\2610\"; }"
+    "li.checked::marker { content: \"\\2612\"; }"
+    "</style></head>"
+    "<body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">"
+    "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+    "<span style=\" font-size:24pt; font-weight:700;\">%1</span>"
+    "</p></body></html>").arg(text);
+  ui->counterFrame->setHtml(formattedText);
 }
 
 // TODO(any): las funciones que se definen de aca para abajo se pueden pasar a
