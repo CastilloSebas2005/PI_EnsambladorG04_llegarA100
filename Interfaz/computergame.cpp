@@ -12,6 +12,11 @@ computerGame::computerGame(QWidget *parent)
 
 computerGame::~computerGame() { delete ui; }
 
+void computerGame::resizeEvent(QResizeEvent *event) {
+      (void)event;
+      this->resize(800,600);
+}
+
 void computerGame::updateTextBrowser1() {
   // Convertir counter a QString y actualizar el texto del QTextBrowser con
   // formato HTML

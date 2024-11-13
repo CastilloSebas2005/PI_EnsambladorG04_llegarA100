@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     playerComputer.cpp \
+    playergame.cpp
 
 HEADERS += \
     computergame.h \
@@ -20,10 +21,12 @@ HEADERS += \
     playerModel.h \
     playerComputer.h \
     playerModel.h \
+    playergame.h
 
 FORMS += \
     computergame.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    playergame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

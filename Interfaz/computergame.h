@@ -20,6 +20,9 @@ public:
   ~computerGame();
 
 private slots:
+
+  void resizeEvent(QResizeEvent *event);
+
   void updateTextBrowser1();
 
   void updateTextBrowser2(uint8_t play);
