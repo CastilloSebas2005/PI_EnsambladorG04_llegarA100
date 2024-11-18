@@ -47,7 +47,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:704;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_2">
+   <widget class="QTextBrowser" name="actualPlayer">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -105,7 +105,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Jugada anterior:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_2">
+   <widget class="QTextEdit" name="previousPlayer">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -275,7 +275,7 @@ padding: 0px;</string>
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>280</y>
+      <y>350</y>
       <width>61</width>
       <height>61</height>
      </rect>
@@ -375,7 +375,7 @@ padding: 0px;</string>
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>350</y>
+      <y>280</y>
       <width>61</width>
       <height>61</height>
      </rect>

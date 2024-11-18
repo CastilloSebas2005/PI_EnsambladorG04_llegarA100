@@ -47,11 +47,14 @@ private slots:
 
   void on_pushButton_10_clicked();
 
+  void on_exit_clicked();
+
 private:
   Ui::computerGame *ui;
   uint8_t counter = 0;
   bool turn = true;
   void computerTurn();
+
 };
 
 #endif // COMPUTERGAME_H

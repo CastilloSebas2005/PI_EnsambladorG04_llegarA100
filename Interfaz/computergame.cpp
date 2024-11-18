@@ -1,5 +1,3 @@
-#include <unistd.h>
-
 #include <cstdlib>
 
 #include "computergame.h"
@@ -172,4 +170,8 @@ void computerGame::computerTurn() {
     updateTextBrowser2(playComputer);
     this->turn = true;
   }
+}
+
+void computerGame::on_exit_clicked() {
+  this->close();
 }
