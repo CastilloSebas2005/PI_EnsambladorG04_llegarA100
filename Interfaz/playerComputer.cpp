@@ -7,7 +7,7 @@ playerComputer::playerComputer(char ID) : playerModel(ID) {}
 
 uint8_t playerComputer::generateNumber(uint8_t counter) {
   uint8_t numberGenerated = analizeCounter(counter);
-  std::cout << "Numero generado " << numberGenerated << std::endl;
+  std::cout << "Numero generado " << (int)numberGenerated << std::endl;
   if (!numberGenerated) {
     std::random_device rd;
     std::mt19937 gen(rd());
