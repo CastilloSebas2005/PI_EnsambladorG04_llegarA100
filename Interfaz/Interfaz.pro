@@ -36,8 +36,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    analizeCounter.s
-    updateCounter.s
+    analizeCounter.asm
+    updateCounter.asm
 
 nasm.name = nasm ${QMAKE_FILE_IN}
 nasm.input = ASM_FILES
@@ -48,8 +48,8 @@ nasm.CONFIG += target_predeps
 
 QMAKE_EXTRA_COMPILERS  += nasm
 
-ASM_FILES += analizeCounter.s
-ASM_FILES += updateCounter.s
+ASM_FILES += analizeCounter.asm
+ASM_FILES += updateCounter.asm
 
 # Configurar el directorio de salida para los archivos objeto y el ejecutable
 DESTDIR = bin/
