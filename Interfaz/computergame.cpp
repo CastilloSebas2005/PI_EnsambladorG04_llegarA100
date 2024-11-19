@@ -65,6 +65,7 @@ void computerGame::on_pushButton_clicked() {
   if (turn) {
     uint8_t adder = 1;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -75,6 +76,7 @@ void computerGame::on_pushButton_2_clicked() {
   if (turn) {
     uint8_t adder = 2;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -85,6 +87,7 @@ void computerGame::on_pushButton_3_clicked() {
   if (turn) {
     uint8_t adder = 3;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -95,6 +98,7 @@ void computerGame::on_pushButton_4_clicked() {
   if (turn) {
     uint8_t adder = 4;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -105,6 +109,7 @@ void computerGame::on_pushButton_5_clicked() {
      if (turn) {
     uint8_t adder = 5;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -115,6 +120,7 @@ void computerGame::on_pushButton_6_clicked() {
      if (turn) {
     uint8_t adder = 6;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -125,6 +131,7 @@ void computerGame::on_pushButton_7_clicked() {
      if (turn) {
     uint8_t adder = 7;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -135,6 +142,7 @@ void computerGame::on_pushButton_8_clicked() {
      if (turn) {
     uint8_t adder = 8;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -145,6 +153,7 @@ void computerGame::on_pushButton_9_clicked() {
      if (turn) {
     uint8_t adder = 9;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -155,6 +164,7 @@ void computerGame::on_pushButton_10_clicked() {
      if (turn) {
     uint8_t adder = 10;
     updateCounter(&(this->counter), adder);
+    updateCounter(&(this->counterComputer), adder);
     updateTextBrowser1();
     this->turn = false;
     computerTurn();
@@ -164,8 +174,9 @@ void computerGame::on_pushButton_10_clicked() {
 void computerGame::computerTurn() {
   if (!this->turn) {
     playerComputer computer('c');
-    uint8_t playComputer = computer.generateNumber(this->counter);
-    updateCounter(&(this->counter), playComputer);
+    uint8_t playComputer = computer.generateNumber(this->counterComputer);
+    updateCounter(&(counter), playComputer);
+    this->counterComputer = counter;
     updateTextBrowser1();
     updateTextBrowser2(playComputer);
     this->turn = true;

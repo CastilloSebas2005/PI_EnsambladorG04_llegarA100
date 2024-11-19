@@ -52,6 +52,7 @@ private slots:
 private:
   Ui::computerGame *ui;
   uint8_t counter = 0;
+  uint8_t counterComputer = 0;
   bool turn = true;
   void computerTurn();
 
