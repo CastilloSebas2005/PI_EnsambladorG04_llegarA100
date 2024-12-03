@@ -1,0 +1,9 @@
+C:\Users\sebas\source\repos\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.vcxproj.AssemblyReference.cache
+C:\Users\sebas\source\repos\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.Form1.resources
+C:\Users\sebas\source\repos\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.vcxproj.GenerateResource.cache
+C:\Users\sebas\source\repos\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.computerGame.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.vcxproj.AssemblyReference.cache
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.computerGame.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.Form1.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.vcxproj.GenerateResource.cache
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.playerGame.resources
