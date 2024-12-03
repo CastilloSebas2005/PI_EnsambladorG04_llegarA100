@@ -2,3 +2,8 @@ C:\Users\yoser\Source\Repos\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.
 C:\Users\yoser\Source\Repos\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.Form1.resources
 C:\Users\yoser\Source\Repos\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.vcxproj.GenerateResource.cache
 C:\Users\yoser\Source\Repos\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.playergame.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.vcxproj.AssemblyReference.cache
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.Form1.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.playergame.resources
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.vcxproj.GenerateResource.cache
+C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\PI_LlegarA100\PI_LlegarA100\x64\Debug\PI_LlegarA100.computerGame.resources

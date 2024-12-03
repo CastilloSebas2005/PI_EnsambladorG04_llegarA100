@@ -32,6 +32,9 @@
     <ClInclude Include="playergame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="computerGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinFormsProject.cpp">
@@ -49,10 +52,21 @@
     <ClCompile Include="playergame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="computerGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\analizeCounter.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\updateCounter.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>
