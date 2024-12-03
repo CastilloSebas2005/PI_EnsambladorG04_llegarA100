@@ -62,10 +62,10 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\analizeCounter.asm">
+    <MASM Include="analizeCounter.asm">
       <Filter>Source Files</Filter>
     </MASM>
-    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\updateCounter.asm">
+    <MASM Include="updateCounter.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>

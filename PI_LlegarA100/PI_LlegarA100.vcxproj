@@ -178,8 +178,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\analizeCounter.asm" />
-    <MASM Include="..\..\InterfazEnsamblador\InterfazEnsamblador\updateCounter.asm" />
+    <MASM Include="analizeCounter.asm" />
+    <MASM Include="updateCounter.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
