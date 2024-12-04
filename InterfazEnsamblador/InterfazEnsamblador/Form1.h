@@ -206,19 +206,28 @@ namespace CppCLRWinFormsProject {
     private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
     }
     private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
 		InterfazEnsamblador::playerGame^ form = gcnew InterfazEnsamblador::playerGame();
+        form->FormClosed += gcnew FormClosedEventHandler(this, &Form1::OnFormClosed);
         form->ShowDialog();
     }
     private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
         InterfazEnsamblador::computerGame^ form = gcnew InterfazEnsamblador::computerGame();
+        form->FormClosed += gcnew FormClosedEventHandler(this, &Form1::OnFormClosed);
         form->ShowDialog();
     }
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();   
         InterfazEnsamblador::manual^ form = gcnew InterfazEnsamblador::manual();
+        form->FormClosed += gcnew FormClosedEventHandler(this, &Form1::OnFormClosed);
         form->ShowDialog();
     }
     private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-        exit(0);
+		Application::Exit();
+    }
+    private: System::Void OnFormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+       this->Show();
     }
     }; // end of class Form1
 } // end of namespace CppCLRWinFormsProject

@@ -1,15 +1,6 @@
-﻿  pch.cpp
-  AssemblyInfo.cpp
-  CppCLR_WinFormsProject.cpp
-  Form1.cpp
+﻿  CppCLR_WinFormsProject.cpp
   computerGame.cpp
-  ganador1.cpp
-  ganador2.cpp
-  ganadorComputadora.cpp
-  ganadorhumano.cpp
-  manual.cpp
   playerGame.cpp
   Generando código...
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   AssemblyInfo.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  InterfazEnsamblador.vcxproj -> C:\Users\yoser\Downloads\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.exe
+  InterfazEnsamblador.vcxproj -> C:\Users\sebas\source\repos\PI_EnsambladorG04_llegarA100\InterfazEnsamblador\x64\Debug\InterfazEnsamblador.exe
